@@ -2,6 +2,7 @@
   <div id="app">
     <m-header></m-header>
     <router-view></router-view>
+    <div class="space-common"></div>
     <tab></tab>
   </div>
 </template>

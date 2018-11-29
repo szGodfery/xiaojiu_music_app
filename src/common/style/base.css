@@ -1,6 +1,10 @@
 @charset "utf-8";
 html,
 body {
-    background-color: #31c27c;
+    background-color: #f4f4f4;
     color: #fff;
+}
+.space-common{
+  height: 60px;
+  width: 100%;
 }
