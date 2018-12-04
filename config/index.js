@@ -17,6 +17,13 @@ module.exports = {
         pathRewrite:{
           '^/rec':''
         }
+      },
+      '/hotMusicList':{
+        target:'https://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg',
+        changeOrigin:true,
+        pathRewrite:{
+          '^/hotMusicList':''
+        }
       }
     },
 

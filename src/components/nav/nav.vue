@@ -3,10 +3,10 @@
     <router-link class="nav-item" tag="div" to="/find-music/rec-music">
       <span>推荐音乐</span>
     </router-link>
-    <router-link class="nav-item" tag="div" to="/hot-music">
-      <span>热歌榜</span>
+    <router-link class="nav-item" tag="div" to="/find-music/hot-music">
+      <span>排行榜</span>
     </router-link>
-    <router-link class="nav-item" tag="div" to="/search-music">
+    <router-link class="nav-item" tag="div" to="/find-music/search-music">
       <span>搜索</span>
     </router-link>
   </div>
