@@ -31,7 +31,7 @@
                 <!-- 图片的load事件 由于图片是异步请求,且DOM的宽度是由图片自动撑开的,所以数据回来之后需要刷新一下BScroll -->
                 <img :src="item.picUrl" @load="loadImage" alt="">
                 <i class="play iconfont icon-play"></i>
-                <i class="listen_count iconfont icon-yinle2">{{format(item.accessnum)}}</i>
+                <i class="listen_count iconfont icon-yinle2">{{_format(item.accessnum)}}</i>
               </a>
               <span class="list-info">
                 <span class="song-desc">{{item.songListDesc}}</span>
@@ -50,6 +50,8 @@ import Scroll from "../../base/scroll/scroll";
 import SLider from "../../base/slider/slider";
 import Loading from "../../base/loading/loading";
 import { getRecList } from "../../api/rec-music/rec-music.js";
+import { format } from "../../common/js/tools.js";
+
 export default {
   components: {
     Loading,
@@ -96,19 +98,22 @@ export default {
         this.$refs.scroll.refresh();
       }
     },
-    format(num) {
-      let temp = String(num).split("");
-      if (temp.length > 4) {
-        let test4 = temp.slice(-4).join("");
-        let test = temp.slice(0, temp.length - 4).join("");
-        let total = `${test}.${test4}`;
-        num = (Math.round(total * 100) / 100).toFixed(1) + "万";
-        test4 = null;
-        test = null;
-      }
-      temp = null;
-      return num;
+    _format(num){
+      return format(num)
     }
+    // format(num) {
+    //   let temp = String(num).split("");
+    //   if (temp.length > 4) {
+    //     let test4 = temp.slice(-4).join("");
+    //     let test = temp.slice(0, temp.length - 4).join("");
+    //     let total = `${test}.${test4}`;
+    //     num = (Math.round(total * 100) / 100).toFixed(1) + "万";
+    //     test4 = null;
+    //     test = null;
+    //   }
+    //   temp = null;
+    //   return num;
+    // }
   }
 };
 </script>
