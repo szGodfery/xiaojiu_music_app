@@ -80,9 +80,9 @@
 
 <template>
   <div class="hot-music">
-    <scroll class="hot-content" ref="scroll" :data="hotMusicList" :pulldown="isPull" :pullup="isPull" @pulldown="_pullDown">
+    <scroll class="hot-content" ref="scroll" :data="topMusicList" :pulldown="isPull" :pullup="isPull" @pulldown="_pullDown">
       <div>
-        <div class="hot-list" v-for="item in hotMusicList" :key="item.id">
+        <div class="hot-list" v-for="item in topMusicList" :key="item.id" @click="selectItem(item)" >
           <div class="icon-img">
             <img :src="item.picUrl" alt="">
             <i class="iconfont icon-yinle2 listenCount">{{_format(item.listenCount)}}</i>
@@ -100,15 +100,16 @@
           <i class="iconfont icon-jiantou"></i>
         </div>
       </div>
-      <loading v-show="hotMusicList.length===0"></loading>
+      <loading v-show="topMusicList.length===0"></loading>
     </scroll>
+    <router-view></router-view>
 
   </div>
 </template>
 <script>
 import Loading from "../../base/loading/loading";
 import Scroll from "../../base/scroll/scroll";
-import { getHotMusicList } from "../../api/hot-music/hot-music.js";
+import { getTopMusicList } from "../../api/hot-music/hot-music.js";
 import {format} from "../../common/js/tools.js"
 export default {
   components: {
@@ -117,24 +118,33 @@ export default {
   },
   data() {
     return {
-      hotMusicList: [],
+      topMusicList: [],
       isPull: true
     };
   },
   created() {
-    this._getHotMusicList();
+    this._getTopMusicList();
   },
   methods: {
+    // 点击列表进行跳转
+    selectItem(item){
+      this.$router.push({path:`/find-music/hot-music/${item.id}`})
+    // 通过mutation 改变vuex的state状态,第二个参数是传递过去的值.SET_SINGER是一个函数里面写了改变state的方式
+      this.$store.commit('SET_TOP_MUSIC_LIST',item)
+    },
+    // 格式化数字,转换成万
     _format(num){
       return format(num)
     },
+    // 下拉刷新
     _pullDown() {
       this._getHotMusicList();
     },
-    _getHotMusicList() {
-      getHotMusicList().then(res => {
+    // 获取音乐列表
+    _getTopMusicList() {
+      getTopMusicList().then(res => {
         if (res.code === 0) {
-          this.hotMusicList = res.data.topList;
+          this.topMusicList = res.data.topList;
           this.timer = setTimeout(() => {
             this.$refs.scroll.downTip = {
               isLoading: false,

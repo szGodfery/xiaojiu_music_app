@@ -18,8 +18,15 @@ module.exports = {
           '^/rec':''
         }
       },
-      '/hotMusicList':{
+      '/topMusicList':{
         target:'https://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg',
+        changeOrigin:true,
+        pathRewrite:{
+          '^/topMusicList':''
+        }
+      },
+      '/hotMusicList':{
+        target:'https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg',
         changeOrigin:true,
         pathRewrite:{
           '^/hotMusicList':''

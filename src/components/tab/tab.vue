@@ -23,6 +23,7 @@
 .tab {
   display: flex;
   position: fixed;
+  z-index: 100;
   bottom: 0;
   left: 0;
   width: 100%;

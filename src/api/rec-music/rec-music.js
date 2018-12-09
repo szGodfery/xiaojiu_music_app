@@ -8,5 +8,5 @@ export function getRecList() {
     uin: 0,
     needNewCode: 1
   })
- return  axios.get('/rec',data)
+ return  axios.get('/rec',{params:data})
 }

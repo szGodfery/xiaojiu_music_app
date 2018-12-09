@@ -68,12 +68,16 @@ export default {
   created() {
     this._getRecList();
   },
+  destroyed(){
+    clearTimeout(this.timer)
+  },
   methods: {
     _getRecList() {
       getRecList().then(res => {
         if (res.data.code === 0) {
           this.recList = res.data.data;
           this.timer = setTimeout(() => {
+            //console.log(this.$refs.scroll)
             this.$refs.scroll.downTip = {
               isLoading: false,
               showLoading: false,

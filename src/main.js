@@ -2,8 +2,10 @@ import 'babel-polyfill'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store/index'
 // 图片懒加载
 import VueLazyload from 'vue-lazyload'
+
 
 
 // 全局样式相关
@@ -23,5 +25,6 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 })

@@ -1,22 +1,22 @@
 <template>
   <div class="find-music">
     <nav-tip></nav-tip>
-    <router-view></router-view>
-    
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 
 </template>
 <script>
-import NavTip from '../nav/nav'
+import NavTip from "../nav/nav";
 
 export default {
-  components:{
+  components: {
     NavTip
   },
-  data(){
-    return{}
+  data() {
+    return {};
   }
-  
-}
+};
 </script>
 

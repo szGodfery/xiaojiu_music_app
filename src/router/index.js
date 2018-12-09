@@ -21,7 +21,11 @@ export default new Router({
         },
         {
           path: '/find-music/hot-music',
-          component: r => require(['../components/hot-music/hot-music.vue'], r)
+          component: r => require(['../components/hot-music/hot-music.vue'], r),
+          children: [{
+            path: ':id',
+            component: r => require(['../components/hot-music/top-list.vue'], r)
+          }]
         },
         {
           path: '/find-music/search-music',
