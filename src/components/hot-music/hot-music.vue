@@ -111,6 +111,7 @@ import Loading from "../../base/loading/loading";
 import Scroll from "../../base/scroll/scroll";
 import { getTopMusicList } from "../../api/hot-music/hot-music.js";
 import {format} from "../../common/js/tools.js"
+import { mapMutations } from 'vuex';
 export default {
   components: {
     Loading,
@@ -131,6 +132,8 @@ export default {
       this.$router.push({path:`/find-music/hot-music/${item.id}`})
     // 通过mutation 改变vuex的state状态,第二个参数是传递过去的值.SET_SINGER是一个函数里面写了改变state的方式
       this.$store.commit('SET_TOP_MUSIC_LIST',item)
+      // 
+      //this.setTopMusicList(item)
     },
     // 格式化数字,转换成万
     _format(num){
@@ -138,7 +141,7 @@ export default {
     },
     // 下拉刷新
     _pullDown() {
-      this._getHotMusicList();
+      this._getTopMusicList();
     },
     // 获取音乐列表
     _getTopMusicList() {
@@ -155,7 +158,12 @@ export default {
           }, 1000);
         }
       });
-    }
+    },
+    // 把mutation 设置store.state 方法拓展到method里面 相当于 this.$store.commit('SET_TOP_MUSIC_LIST',item)
+    // 把SET_TOP_MUSIC_LIST 映射到 setTopMusicList ->this.setTopMusicList(item)等同于上面
+    // ...mapMutations({
+    //   setTopMusicList:'SET_TOP_MUSIC_LIST'
+    // })
   }
 };
 </script>

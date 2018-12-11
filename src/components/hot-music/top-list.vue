@@ -15,7 +15,7 @@
 
 <template>
   <div class="topList">
-    <h2>歌手列表</h2>
+    <music-list :songs="songs"></music-list>
   </div>
 
 </template>
@@ -23,7 +23,7 @@
 import { getHotMusicList } from "../../api/hot-music/hot-music.js";
 import { mapGetters } from "vuex";
 import { creatSong } from "../../common/js/creatSong.js";
-
+import musicList from "../music-list/music-list"
 export default {
   // 从vuex的store中获取topMusicList的id 使用this.$store.getters.****方法
   // 语法糖 把vuex.store中的gettters 映射到vuex提供的一个方法mapGetters(['getters中定义的方法名','方法名2'])
@@ -81,6 +81,9 @@ export default {
       });
       return ret;
     }
+  },
+  components:{
+    musicList
   }
 };
 </script>
